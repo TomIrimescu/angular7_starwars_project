@@ -1,8 +1,5 @@
 
 <ul class="list-group">
-  <app-item
-    *ngFor="let char of characters"
-    [character]="char"
-    (sideAssigned)="onSideAssigned($event)">
+  <app-item *ngFor="let char of characters" [character]="char">
   </app-item>
 </ul>
