@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StarWarsService } from '../star-wars.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-character',
@@ -14,9 +15,11 @@ export class CreateCharacterComponent implements OnInit {
   ];
 
   swService: StarWarsService;
+  router: Router;
 
-  constructor(swService: StarWarsService) {
+  constructor(swService: StarWarsService, router: Router) {
     this.swService = swService;
+    this.router = router;
    }
 
   ngOnInit() {
@@ -28,6 +31,7 @@ export class CreateCharacterComponent implements OnInit {
     }
     console.log(submittedForm);
     this.swService.addCharacter(submittedForm.value.name, submittedForm.value.side);
+    this.router.navigate(['/characters']);
   }
 
 }
