@@ -14,6 +14,7 @@ export class StarWarsService {
   private logService: LogService;
   charactersChanged = new Subject<void>();
   http: HttpClient;
+  results: any[];
 
   constructor(logService: LogService, http: HttpClient) {
     this.logService = logService;
@@ -21,11 +22,12 @@ export class StarWarsService {
   }
 
   fetchCharacters() {
-    this.http.get('https://swapi.co/api/people')
+    this.http.get('https://swapi.co/api/people/')
       .subscribe(
         (data) => {
           console.log(data);
-          const extractedChars = data.results;
+          console.log(typeof data);
+          const extractedChars = data['results'];
           const chars = extractedChars.map((char) => {
             return { name: char.name, side: '' };
           });
